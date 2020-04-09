@@ -49,12 +49,14 @@ class App extends React.Component {
         const activeTasks = tasks.filter(task => !task.done);
 
         return (
-            <div>
+            <div className = 'todo-app'>
                 <h1>To Do List</h1>
                 <h2>Active tasks: { activeTasks.length }</h2>
+                <div className = 'todo-list'>
                 {tasks.map(task =>
                     <Task task = {task} key = { task.id } handleChange = {this.handleChange}/>
                 )}
+                </div>
                 <TaskInput addTask = {this.addTask}/>
             </div>
         )
