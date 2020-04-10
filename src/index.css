@@ -33,7 +33,7 @@ body {
   font-family: Roboto, sans-serif;
   font-weight: 100;
   font-size: 15px;
-  color: #333333;
+  color: #111111;
 }
 
 input[type=checkbox] {
@@ -51,4 +51,9 @@ input {
 
 button {
   font-size: 20px;
+}
+
+.done {
+  color: #888888;
+  text-decoration: line-through;
 }
