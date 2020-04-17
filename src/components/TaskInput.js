@@ -7,29 +7,26 @@ class TaskInput extends React.Component {
         this.state = {
             input : ''
         };
-
-        this.addTask = this.addTask.bind(this);
     }
 
-    addTask() {
-        const input = this.state.input;
+    addTask = () => {
+        const { input } = this.state;
         if (input) {
             this.props.addTask(input);
         }
         this.setState({ input : ''});
     }
 
-    inputChange(event) {
+    inputChange = event => {
         this.setState({ input : event.target.value });
-        console.log(this.state);
     }
 
     render() {
-        const input = this.state.input;
+        const { input } = this.state;
         return (
             <div>
-                <input onChange = {(e) => this.inputChange(e)} value = { input }></input>
-                <button onClick = {this.addTask}>ADD</button>
+                <input onChange={(e) => this.inputChange(e)} value={input}></input>
+                <button onClick={this.addTask}>ADD</button>
             </div>
         )
     }
