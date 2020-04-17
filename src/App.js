@@ -8,7 +8,11 @@ class App extends React.Component {
         id: 0,
     };
     
-    
+    keyEnterPress = (event) => {
+        if (event.ket === 'Enter') {
+            this.addTask();
+        }
+    }
 
     addTask = task => {
         this.setState(prevState => {
@@ -48,7 +52,7 @@ class App extends React.Component {
                     <Task task={task} key={task.id} toggleDone={this.toggleDone}/>
                 )}
                 </div>
-                <TaskInput addTask={this.addTask}/>
+                <TaskInput addTask={this.addTask} keyEnterPress={this.keyEnterPress}/>
             </div>
         )
     }
