@@ -9,7 +9,7 @@ function Task(props) {
 
     return (
         <div className = {classes.join(' ')}>
-            <input type = "checkbox" checked = {props.task.done} onChange={() => props.handleChange(props.task.id)}></input>
+            <input type = "checkbox" checked = {props.task.done} onChange={() => props.toggleDone(props.task.id)}></input>
             <p>{ props.task.title }</p>
         </div>
     )

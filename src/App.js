@@ -3,35 +3,27 @@ import Task from './components/Task';
 import TaskInput from './components/TaskInput';
 
 class App extends React.Component {
-    constructor() {
-        super();
+    state = {
+        tasks: [],
+        id: 0,
+    };
+    
+    
 
-        this.state = {
-            tasks : [
-                /*{id : 0, title : "First task", done : false},
-                {id : 1, title : "Second task", done : true},
-                {id : 2, title : "Third task", done : false},
-                {id : 3, title : "Fourth task", done : false},*/
-            ]
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.addTask = this.addTask.bind(this);
-    }
-
-    addTask(task) {
+    addTask = task => {
         this.setState(prevState => {
-            let tasks = prevState.tasks;
-            tasks.push({
-                id : tasks.length !== 0 ? tasks.length : 0,
-                title : task,
-                done : false
-            });
-            return tasks;
+            return {
+                tasks: [...prevState.tasks,{
+                    id: prevState.id,
+                    title: task,
+                    done: false,
+                }],
+                id: prevState.id + 1,
+            }
         })
-    }
+    };
 
-    handleChange(id) {
+    toggleDone = id => {
         this.setState(prevState => {
             const updatedTasks = prevState.tasks.map(task => {
                 if (task.id === id) {
@@ -39,7 +31,6 @@ class App extends React.Component {
                 }
                 return task;
             });
-            console.log(updatedTasks);
             return updatedTasks;
         })
     }
@@ -54,10 +45,10 @@ class App extends React.Component {
                 <h2>Active tasks: { activeTasks.length }</h2>
                 <div className = 'todo-list'>
                 {tasks.map(task =>
-                    <Task task = {task} key = { task.id } handleChange = {this.handleChange}/>
+                    <Task task={task} key={task.id} toggleDone={this.toggleDone}/>
                 )}
                 </div>
-                <TaskInput addTask = {this.addTask}/>
+                <TaskInput addTask={this.addTask}/>
             </div>
         )
     }
