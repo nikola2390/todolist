@@ -3,15 +3,12 @@ import Task from './components/Task';
 import TaskInput from './components/TaskInput';
 
 class App extends React.Component {
-    state = {
-        tasks: [],
-        id: 0,
-    };
-    
-    keyEnterPress = (event) => {
-        if (event.ket === 'Enter') {
-            this.addTask();
-        }
+    constructor() {
+        super();
+        this.state = {
+            tasks: [],
+            id: 0,
+        };
     }
 
     addTask = task => {
@@ -30,10 +27,11 @@ class App extends React.Component {
     toggleDone = id => {
         this.setState(prevState => {
             const updatedTasks = prevState.tasks.map(task => {
-                if (task.id === id) {
-                    task.done = !task.done
+                const temp = task;
+                if (temp.id === id) {
+                    temp.done = !temp.done
                 }
-                return task;
+                return temp;
             });
             return updatedTasks;
         })
@@ -52,11 +50,10 @@ class App extends React.Component {
                     <Task task={task} key={task.id} toggleDone={this.toggleDone}/>
                 )}
                 </div>
-                <TaskInput addTask={this.addTask} keyEnterPress={this.keyEnterPress}/>
+                <TaskInput addTask={this.addTask}/>
             </div>
         )
     }
 }
-
 
 export default App;

@@ -5,11 +5,11 @@ class TaskInput extends React.Component {
         super(props); 
 
         this.state = {
-            input : ''
+            input : '',
         };
     }
   
-    keyEnterPress = (event) => {
+    keyEnterPress = event => {
         if (event.key === 'Enter') {
             this.addTask();
         }
@@ -17,8 +17,9 @@ class TaskInput extends React.Component {
 
     addTask = () => {
         const { input } = this.state;
+        const { addTask } = this.props;
         if (input) {
-            this.props.addTask(input);
+            addTask(input);
         }
         this.setState({ input : ''});
     }
@@ -31,8 +32,8 @@ class TaskInput extends React.Component {
         const { input } = this.state;
         return (
             <div>
-                <input onKeyPress={this.keyEnterPress} onChange={(e) => this.inputChange(e)} value={input}></input>
-                <button onClick={this.addTask}>ADD</button>
+                <input onKeyPress={this.keyEnterPress} onChange={(e) => this.inputChange(e)} value={input}/>
+                <button onClick={this.addTask} type="button">ADD</button>
             </div>
         )
     }
