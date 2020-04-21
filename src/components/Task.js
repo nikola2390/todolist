@@ -1,15 +1,15 @@
 import React from 'react';
+import classNames from 'classnames';
 
 function Task(props) {
-    const classes = ['todo-item'];
     const { task } = props;
-
-    if (task.done) {
-        classes.push('done');
-    }
+    const classes = classNames({
+        'todo-item': true,
+        'done': task.done
+    }) 
 
     return (
-        <div className = {classes.join(' ')}>
+        <div className = {classes}>
             <input type = "checkbox" checked = {task.done} onChange={() => props.toggleDone(task.id)}/>
             <p>{ task.title }</p>
         </div>
