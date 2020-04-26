@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button, TextField} from '@material-ui/core';
 
 class TaskInput extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class TaskInput extends React.Component {
         }
     }
 
-    addTask = () => {
+    addTask = (event) => {
+        event.preventDefault();
         const { input } = this.state;
         const { addTask } = this.props;
         if (input) {
@@ -31,10 +33,10 @@ class TaskInput extends React.Component {
     render() {
         const { input } = this.state;
         return (
-            <div>
-                <input onKeyPress={this.keyEnterPress} onChange={(e) => this.inputChange(e)} value={input}/>
-                <button onClick={this.addTask} type="button">ADD</button>
-            </div>
+            <form onSubmit={this.addTask}>
+                <TextField variant='standard' label='ToDo' onChange={(e) => this.inputChange(e)} value={input}/>
+                <Button variant='contained' color='primary' type='submit'>ADD</Button>
+            </form>
         )
     }
 }
