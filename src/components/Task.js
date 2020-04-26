@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Checkbox, ListItem, ListItemText } from '@material-ui/core'
 
 function Task(props) {
     const { task } = props;
@@ -9,10 +10,10 @@ function Task(props) {
     }) 
 
     return (
-        <div className = {classes}>
-            <input type = "checkbox" checked = {task.done} onChange={() => props.toggleDone(task.id)}/>
-            <p>{ task.title }</p>
-        </div>
+        <ListItem className = {classes} divider='true'>
+            <Checkbox color='primary' checked={task.done} onChange={() => props.toggleDone(task.id)}/>
+            <ListItemText>{ task.title }</ListItemText>
+        </ListItem>
     )
 }
 
