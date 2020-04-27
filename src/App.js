@@ -1,4 +1,5 @@
 import React from 'react';
+import {List, Typography} from '@material-ui/core';
 import Task from './components/Task';
 import TaskInput from './components/TaskInput';
 
@@ -43,13 +44,13 @@ class App extends React.Component {
 
         return (
             <div className = 'todo-app'>
-                <h1>To Do List</h1>
-                <h2>Active tasks: { activeTasks.length }</h2>
-                <div className = 'todo-list'>
+                <Typography variant='h1'>To Do List</Typography>
+                <Typography variant='h2'>Active tasks: { activeTasks.length }</Typography>
+                <List className = 'todo-list'>
                 {tasks.map(task =>
                     <Task task={task} key={task.id} toggleDone={this.toggleDone}/>
                 )}
-                </div>
+                </List>
                 <TaskInput addTask={this.addTask}/>
             </div>
         )
